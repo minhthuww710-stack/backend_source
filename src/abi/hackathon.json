@@ -1,0 +1,1704 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "registrationEnd",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "submissionStart",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "submissionEnd",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "finalSubmissionStart",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "finalSubmissionEnd",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "newStatus",
+        "type": "bool"
+      }
+    ],
+    "name": "CanUpdateRegistrationChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "newStatus",
+        "type": "bool"
+      }
+    ],
+    "name": "CanUpdateSubmissionFormChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "FinalSubmissionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "FinalSubmissionUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "FinalSubmissionWindowSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "FinalistSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newStatus",
+        "type": "uint256"
+      }
+    ],
+    "name": "RegistrationEndTimeChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "SubmissionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "SubmissionUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "SubmissionWindowSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "UserRegistered",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "note",
+        "type": "string"
+      }
+    ],
+    "name": "UserUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "wallet",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "topicId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "name": "WinnerAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "wallet",
+        "type": "address"
+      }
+    ],
+    "name": "WinnerRemoved",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "member_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "student_code",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.Member",
+        "name": "newMember",
+        "type": "tuple"
+      }
+    ],
+    "name": "addMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum TypesLib.PrizeCategory",
+            "name": "prize",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TypesLib.Winner",
+        "name": "input",
+        "type": "tuple"
+      }
+    ],
+    "name": "addWinner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum TypesLib.PrizeCategory",
+            "name": "prize",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TypesLib.Winner[]",
+        "name": "inputs",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "addWinners",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "canUpdateRegistration",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "canUpdateSubmissionForm",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllFinalSubmittedAccounts",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllRegisteredAccounts",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllSubmittedAccounts",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllWinnerWallets",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFinalAccounts",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "getFinalSubmissionOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updatedAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionForm",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "getRegistrationOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "school_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "faculty_major",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "instructor",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "leader_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "student_code",
+            "type": "string"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "address_wallet",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "member_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "phone_number",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "student_code",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct TypesLib.Member[]",
+            "name": "members",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updatedAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TypesLib.RegisterForm",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "getSubmissionOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updatedAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionForm",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "wallet",
+        "type": "address"
+      }
+    ],
+    "name": "getWinner",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum TypesLib.PrizeCategory",
+            "name": "prize",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TypesLib.Winner",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "hasRegistered",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "hasSubmitted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isFinalSubmission",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isFinalist",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isRegistrationOpen",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isSubmissionOpen",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "participantToTeam",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "school_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "faculty_major",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "instructor",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "leader_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "student_code",
+            "type": "string"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "address_wallet",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "member_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "phone_number",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "student_code",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct TypesLib.Member[]",
+            "name": "members",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct TypesLib.RegisterFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "register",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "wallet",
+        "type": "address"
+      }
+    ],
+    "name": "removeWinner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "_status",
+        "type": "bool"
+      }
+    ],
+    "name": "setCanUpdateSubmissionForm",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "setFinalSubmissionWindow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "accounts",
+        "type": "address[]"
+      },
+      {
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "setFinalists",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_endTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "setRegistrationEndTime",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "setSubmissionWindow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "_status",
+        "type": "bool"
+      }
+    ],
+    "name": "setUpdateRegistrationStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "submitFinalWork",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "submitWork",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateFinalSubmission",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateFinalSubmissionWindow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "member_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "student_code",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.Member",
+        "name": "m",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "school_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "faculty_major",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "instructor",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "leader_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "student_code",
+            "type": "string"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "address_wallet",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "member_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "phone_number",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "student_code",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct TypesLib.Member[]",
+            "name": "members",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct TypesLib.RegisterFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateRegistration",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "team_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "team_leader",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "github_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "demo_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "video_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "self_evaluation",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "pitch_deck_url",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "document_url",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TypesLib.SubmissionFormInput",
+        "name": "payload",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateSubmission",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateSubmissionWindow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "address_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "topic_id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum TypesLib.PrizeCategory",
+            "name": "prize",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct TypesLib.Winner",
+        "name": "input",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateWinner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
